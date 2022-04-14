@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>Fancytree - Editable Nodes</title>
+
+  <script src="https://code.jquery.com/jquery-1.12.0.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js" type="text/javascript"></script>
+
+  <link href="../fancytree/fancytree/src/skin-win7/ui.fancytree.css" rel="stylesheet" type="text/css">
+  <script src="../fancytree/fancytree/src/jquery.fancytree.js" type="text/javascript"></script>
+  <script src="../fancytree/fancytree/src/jquery.fancytree.edit.js" type="text/javascript"></script>
+
+  <!-- (Irrelevant source removed.) -->
+
+<style type="text/css">
+  span.pending span.fancytree-title {
+    font-style: italic;
+  }
+  span.pending span.fancytree-title:after {
+    content: "2026"; /* ellipsis */
+  }
+</style>
+<script type="text/javascript">
+// ----------
+
+$(function(){
+ var Source_1=[{
+		"title":"Lazy Challenge:Challenge",
+		"lazy":true,
+		"refkey":"1"
+	}];
+var Source_2 =[{
+		"title":"Lazy Challenge name",
+		"lazy":true,
+		"refkey":"2",
+		"folder":true,
+		"expanded":true,
+		"children":[
+			{
+				"title":"Images or/and Videos:CommaSeparated Drag&Drop",
+				"refkey":"21"
+			},
+			{
+				"title":"Description:Long Text",
+				"refkey":"22"
+			},
+			{
+				"title":"Keywords:CommaSeparated Short Text",
+				"refkey":"23"
+			},
+			{
+				"title":"References:LineFeedSeparated Reference",
+				"refkey":"24"
+			},
+			{
+				"title":"Webpages:CommaSeparated URL",
+				"refkey":"25"
+			},
+			{
+				"title":"Sub-Challenges names:Lazy Challenge name",
+				"lazy":true,
+				"refkey":"26"
+			}
+		]
+	}];
+var Source_3=[{
+		"title":"Lazy Committee:Committee",
+		"lazy":true,
+		"refkey":"3"
+	}];
+var Source_4=[{
+		"title":"Lazy Committee name",
+		"lazy":true,
+		"refkey":"4",
+		"folder":true,
+		"expanded":true,
+		"children":[
+			{
+				"title":"Chair dashboard:Calculated",
+				"refkey":"41"
+			},
+			{
+				"title":"Chairs:Lazy Individual Member",
+				"lazy":true,
+				"refkey":"42"
+			},
+			{
+				"title":"Board:Lazy Individual Member",
+				"lazy":true,
+				"refkey":"43"
+			},
+			{
+				"title":"Members:Lazy Individual Member",
+				"lazy":true,
+				"refkey":"44"
+			},
+			{
+				"title":"Committees:Lazy Committee name",
+				"lazy":true,
+				"refkey":"45"
+			}
+		]
+	}];
+	var Source_5=[{
+		"title":"Lazy Community name",
+		"lazy":true,
+		"refkey":"5",
+		"folder":true,
+		"expanded":true,
+		"children":[
+			{
+				"title":"Community title:Community title(distance(Community Name,CS-DC eCampus))",
+				"refkey":"51"
+			},
+			{
+				"title":"Community Challenge:Challenge",
+				"refkey":"52"
+			},
+			{
+				"title":"Chairs Dashboard",
+				"refkey":"53",
+				"folder":true,
+				"expanded":true,
+				"children":[
+					{
+						"title":"Out messages:Lazy Message",
+						"lazy":true,
+						"refkey":"531"
+					},
+					{
+						"title":"In messages:Lazy Message",
+						"lazy":true,
+						"refkey":"532"
+					},
+					{
+						"title":"Contacts:Contacts",
+						"refkey":"533"
+					}
+				]
+			},
+			{
+				"title":"Chairs:Lazy Individual Member",
+				"lazy":true,
+				"refkey":"54"
+			},
+			{
+				"title":"Board Committee:Lazy Individual Member",
+				"lazy":true,
+				"refkey":"55"
+			},
+			{
+				"title":"Members:Lazy Individual Member",
+				"lazy":true,
+				"refkey":"56"
+			},
+			{
+				"title":"Committees:Lazy Committee",
+				"lazy":true,
+				"refkey":"57"
+			},
+			{
+				"title":"Communities:Lazy Community name",
+				"lazy":true,
+				"refkey":"58"
+			}
+		]
+	}];
+	var Source_6=[{
+		"title":"Lazy Dashboard",
+		"lazy":true,
+		"refkey":"6",
+		"folder":true,
+		"expanded":true,
+		"children":[
+			{
+				"title":"Out messages:Lazy Message",
+				"lazy":true,
+				"refkey":"61"
+			},
+			{
+				"title":"In messages:Lazy Message",
+				"lazy":true,
+				"refkey":"62"
+			},
+			{
+				"title":"Contacts",
+				"refkey":"63",
+				"folder":true,
+				"expanded":true,
+				"children":[
+					{
+						"title":"Individual Contacts:CommaSeparated Name<email>",
+						"refkey":"631"
+					},
+					{
+						"title":"Institutional Contacts:CommaSeparated TitleAndOrName<email>",
+						"refkey":"632"
+					}
+				]
+			}
+		]
+	}];
+	var Source_7=[{
+		"title":"Lazy Individual Member",
+		"lazy":true,
+		"refkey":"7",
+		"folder":true,
+		"expanded":true,
+		"children":[
+			{
+				"title":"Personal challenges:Lazy Challenge",
+				"lazy":true,
+				"refkey":"71"
+			},
+			{
+				"title":"Personal data",
+				"refkey":"72",
+				"folder":true,
+				"expanded":true,
+				"children":[
+					{
+						"title":"Photo:Imageo",
+						"refkey":"721"
+					},
+					{
+						"title":"First names:Short Text",
+						"refkey":"722"
+					},
+					{
+						"title":"Last names:Short Text",
+						"refkey":"723"
+					},
+					{
+						"title":"Short name:Short Text",
+						"refkey":"724"
+					},
+					{
+						"title":"Title:Short Text",
+						"refkey":"725"
+					},
+					{
+						"title":"E-mail:Email",
+						"refkey":"726"
+					},
+					{
+						"title":"Password:Password",
+						"refkey":"727"
+					},
+					{
+						"title":"Regular mail:Regular Mail",
+						"refkey":"728"
+					},
+					{
+						"title":"Personal IoT data:IoT data",
+						"refkey":"729"
+					}
+				]
+			},
+			{
+				"title":"Personal dashboards:Lazy Dashboard",
+				"lazy":true,
+				"refkey":"73"
+			}
+		]
+	}];
+	var Source_8=[{
+		"title":"Lazy Institutional Membership",
+		"lazy":true,
+		"refkey":"8",
+		"folder":true,
+		"expanded":true,
+		"children":[
+			{
+				"title":"Institutional data",
+				"refkey":"81",
+				"folder":true,
+				"expanded":true,
+				"children":[
+					{
+						"title":"Institutional name:Short Text",
+						"refkey":"811"
+					},
+					{
+						"title":"Short institutional name:Short Text",
+						"refkey":"812"
+					},
+					{
+						"title":"Institutional ID:ID",
+						"refkey":"813"
+					},
+					{
+						"title":"Logo:Image",
+						"refkey":"814"
+					},
+					{
+						"title":"Regular mail:Regular Mail",
+						"refkey":"815"
+					},
+					{
+						"title":"Category:OneChoice(High Education,Research,Governmental Organisation,NGO, Cooperative)",
+						"refkey":"816"
+					},
+					{
+						"title":"Heads:CommaSeparated NameTitle<email>",
+						"refkey":"817"
+					},
+					{
+						"title":"Title (Vice)Head:Short Text",
+						"refkey":"818"
+					}
+				]
+			},
+			{
+				"title":"UniTwin Category:UniTwin rules(Institutional Data(Category))",
+				"refkey":"82"
+			},
+			{
+				"title":"Signatory Head:NameTitle<email>",
+				"refkey":"83"
+			},
+			{
+				"title":"Signatory Head contacts",
+				"refkey":"84",
+				"folder":true,
+				"expanded":true,
+				"children":[
+					{
+						"title":"Individual Contacts:CommaSeparated Name<email>",
+						"refkey":"841"
+					},
+					{
+						"title":"Institutional Contacts:CommaSeparated TitleAndOrName<email>",
+						"refkey":"842"
+					}
+				]
+			},
+			{
+				"title":"Institutional representatives:Lazy Individual Member",
+				"lazy":true,
+				"refkey":"85"
+			},
+			{
+				"title":"'One for all' Roadmap:All personal challenges(All Individual Member)",
+				"refkey":"86"
+			},
+			{
+				"title":"'All for one' roadmap:All community challenges(All Individual Member)",
+				"refkey":"87"
+			},
+			{
+				"title":"Committees:Lazy Committee",
+				"lazy":true,
+				"refkey":"88"
+			},
+			{
+				"title":"Commitment Letter:Commitment Letter(self)",
+				"refkey":"89"
+			},
+			{
+				"title":"Institutional memberships:Lazy Institutional Membership",
+				"lazy":true,
+				"refkey":"810"
+			}
+		]
+	}];
+	var Source_9=[{
+		"title":"Lazy Institutional Representative:Institutional Representative",
+		"lazy":true,
+		"refkey":"9"
+	}];
+	var Source_10=[{
+		"title":"Lazy Message",
+		"lazy":true,
+		"refkey":"10",
+		"folder":true,
+		"expanded":true,
+		"children":[
+			{
+				"title":"To:Lazy Individual Member",
+				"lazy":true,
+				"refkey":"101"
+			},
+			{
+				"title":"From:Lazy Individual Member",
+				"lazy":true,
+				"refkey":"102"
+			},
+			{
+				"title":"Object:Short Text",
+				"refkey":"103"
+			},
+			{
+				"title":"Urgency:One Choice(High Priority,Normal Priority, Low Priority)",
+				"refkey":"104"
+			},
+			{
+				"title":"Content:Parametrized Long Text",
+				"refkey":"105"
+			},
+			{
+				"title":"Device:One Choice(Computer, SmartPhone, Computer & SmartPhone)",
+				"refkey":"106"
+			}
+		]
+	}];
+	var Source_11 =[{
+		"title":"Lazy Territorial community name",
+		"lazy":true,
+		"refkey":"11",
+		"folder":true,
+		"expanded":true,
+		"children":[
+			{
+				"title":"Territorial title:Short Text",
+				"refkey":"111"
+			},
+			{
+				"title":"'One for all' Roadmap:All personal challenges(All Individual Member)",
+				"refkey":"112"
+			},
+			{
+				"title":"'All for one' Roadmap:All community challenges(All Individual Member)",
+				"refkey":"113"
+			},
+			{
+				"title":"Chairs Dashboard",
+				"refkey":"114",
+				"folder":true,
+				"expanded":true,
+				"children":[
+					{
+						"title":"Out messages:Lazy Message",
+						"lazy":true,
+						"refkey":"1141"
+					},
+					{
+						"title":"In messages:Lazy Message",
+						"lazy":true,
+						"refkey":"1142"
+					},
+					{
+						"title":"Contacts:Contacts",
+						"refkey":"1143"
+					}
+				]
+			},
+			{
+				"title":"Chairs:Lazy Institutional Representative",
+				"lazy":true,
+				"refkey":"115"
+			},
+			{
+				"title":"Executive Committee:Lazy Institutional Representative",
+				"lazy":true,
+				"refkey":"116"
+			},
+			{
+				"title":"Board Committee:Lazy Institutional Representative",
+				"lazy":true,
+				"refkey":"117"
+			},
+			{
+				"title":"Territorial members:All(Institutional Member(All(individual member)))",
+				"refkey":"118"
+			},
+			{
+				"title":"Committees:Lazy Committee",
+				"lazy":true,
+				"refkey":"119"
+			},
+			{
+				"title":"Territorial communities:Lazy Territorial community name",
+				"refkey":"1110"
+			}
+		]
+	}];
+  $("#tree1").fancytree({
+    source:Source_1,
+    lazyLoad: function(event, data) {
+      data.result =Source_1 ;
+    },
+  });
+  $("#tree2").fancytree({
+    source:Source_2,
+    lazyLoad: function(event, data) {
+       if (data.node.title=="Sub-Challenges names:Lazy Challenge name"){
+        data.result =Source_2 ;
+       }
+    
+    },
+  });
+  $("#tree3").fancytree({
+    source:Source_3,
+    lazyLoad: function(event, data) {
+           data.result =Source_3;
+    },
+  });
+  $("#tree4").fancytree({
+    source:Source_4,
+    lazyLoad: function(event, data) {
+        if(data.node.title=="Lazy Challenge:Challenge"){
+            data.result=Source_1;
+        }
+        if(data.node.title=="Chairs:Lazy Individual Member" ||data.node.title=="Board:Lazy Individual Member"||data.node.title=="Members:Lazy Individual Member"){
+            data.result =Source_7;
+        }if(data.node.title=="Committees:Lazy Committee name"){
+            data.result =Source_4;
+        }
+        if(data.node.title=="Out messages:Lazy Message" ||data.node.title=="In messages:Lazy Message"){
+            data.result =Source_10;
+        }
+        if(data.node.title=="Personal dashboards:Lazy Dashboard"){
+            data.result =Source_6 ;
+        }
+        if(data.node.title=="Personal challenges:Lazy Challenge" ){
+            data.result =Source_1 ;
+        }
+        /* data source 10 */
+      if(data.node.title=="To:Lazy Individual Member" ||data.node.title =="From:Lazy Individual Member"){
+      data.result =Source_7 ;
+      }
+      
+    },
+  });
+  $("#tree5").fancytree({
+    source:Source_5,
+    lazyLoad: function(event, data) {
+        if(data.node.title=="Out messages:Lazy Message"||data.node.title=="In messages:Lazy Message"){
+            data.result =Source_10;
+        }
+        if(data.node.title=="Chairs:Lazy Individual Member" ||data.node.title=="Board Committee:Lazy Individual Member" ||data.node.title=="Members:Lazy Individual Member"){
+            data.result =Source_7;
+        }
+       if(data.node.title=="Committees:Lazy Committee"||data.node.title=="Lazy Committee:Committee"){
+        data.result =Source_3 ;
+       }   
+       if(data.node.title=="Communities:Lazy Community name"){
+        data.result =Source_5 ;
+       }
+        if(data.node.title=="Personal dashboards:Lazy Dashboard"){
+            data.result =Source_6 ;
+        }
+        if(data.node.title=="Personal challenges:Lazy Challenge" ){
+            data.result =Source_1 ;
+        }
+        if(data.node.title=="Lazy Challenge:Challenge"){
+            data.result=Source_1;
+        }
+        /* data source 10 */
+      if(data.node.title=="To:Lazy Individual Member" ||data.node.title =="From:Lazy Individual Member"){
+      data.result =Source_7 ;
+      }
+       
+    },
+  });
+  $("#tree6").fancytree({
+    source:Source_6,
+    lazyLoad: function(event, data) {
+        if(data.node.title=="Out messages:Lazy Message" ||data.node.title=="In messages:Lazy Message"){
+            data.result =Source_10;
+        }
+        if(data.node.title=="To:Lazy Individual Member" ||data.node.title =="From:Lazy Individual Member"){
+      data.result =Source_7 ;
+      }
+    /* data source 7 */
+        if(data.node.title=="Personal dashboards:Lazy Dashboard"){
+            data.result =Source_6 ;
+        }
+        if(data.node.title=="Personal challenges:Lazy Challenge" ){
+            data.result =Source_1 ;
+        }
+        if(data.node.title=="Lazy Challenge:Challenge"){
+            data.result=Source_1;
+        }
+     
+    },
+  });
+  $("#tree7").fancytree({
+    source:Source_7,
+    lazyLoad: function(event, data) {
+        if(data.node.title=="Out messages:Lazy Message" ||data.node.title=="In messages:Lazy Message"){
+            data.result =Source_10;
+        }
+        if(data.node.title=="Personal dashboards:Lazy Dashboard"){
+            data.result =Source_6 ;
+        }
+        if(data.node.title=="Personal challenges:Lazy Challenge" ){
+            data.result =Source_1 ;
+        }
+        if(data.node.title=="Lazy Challenge:Challenge"){
+            data.result=Source_1;
+        }
+        /* data source 10 */
+      if(data.node.title=="To:Lazy Individual Member" ||data.node.title =="From:Lazy Individual Member"){
+      data.result =Source_7 ;
+      }
+    
+       
+     
+    },
+  });
+  $("#tree8").fancytree({
+    source:Source_8,
+    lazyLoad: function(event, data) {
+        if(data.node.title=="Institutional representatives:Lazy Individual Member"){
+            data.result =Source_7 ;
+        }
+        if(data.node.title=="Out messages:Lazy Message" ||data.node.title=="In messages:Lazy Message"){
+            data.result =Source_10;
+        }
+        if(data.node.title=="Personal dashboards:Lazy Dashboard"){
+            data.result =Source_6 ;
+        }
+        if(data.node.title=="Lazy Challenge:Challenge"){
+            data.result=Source_1;
+        }
+        if(data.node.title=="Personal challenges:Lazy Challenge" ){
+            data.result =Source_1 ;
+        }if(data.node.title=="Committees:Lazy Committee"){
+            data.result =Source_3 ;
+        }if(data.node.title=="Institutional memberships:Lazy Institutional Membership"){
+            data.result =Source_8 ;
+        } if(data.node.title=="To:Lazy Individual Member" ||data.node.title =="From:Lazy Individual Member"){
+            data.result =Source_7 ;
+        }
+        if(data.node.title=="Lazy Committee:Committee"){
+           data.result =Source_3;
+        }
+        
+    },
+  });
+
+  $("#tree9").fancytree({
+    source:Source_9,
+    lazyLoad: function(event, data) {
+        data.result =Source_9;
+    },
+  });
+
+  $("#tree10").fancytree({
+    source:Source_10,
+    lazyLoad: function(event, data) {
+    /* data source 10 */
+      if(data.node.title=="To:Lazy Individual Member" ||data.node.title =="From:Lazy Individual Member"){
+      data.result =Source_7 ;
+      }
+    /* data source 7 */
+        if(data.node.title=="Out messages:Lazy Message" ||data.node.title=="In messages:Lazy Message"){
+            data.result =Source_10;
+        }
+        if(data.node.title=="Personal dashboards:Lazy Dashboard"){
+            data.result =Source_6 ;
+        }
+        if(data.node.title=="Personal challenges:Lazy Challenge" ){
+            data.result =Source_1 ;
+        }
+        if(data.node.title=="Lazy Challenge:Challenge"){
+            data.result=Source_1;
+        }
+    },
+  });
+
+  $("#tree11").fancytree({
+    source:Source_11,
+    lazyLoad: function(event, data) {
+        /*Data source 11*/
+        if(data.node.title=="Lazy Institutional Representative:Institutional Representative"){
+            data.result =Source_9;
+        }
+        if(data.node.title=="Out messages:Lazy Message" ||data.node.title=="In messages:Lazy Message"){
+            data.result =Source_10;
+        }if(data.node.title=="Chairs:Lazy Institutional Representative" || data.node.title=="Executive Committee:Lazy Institutional Representative" ||data.node.title=="Board Committee:Lazy Institutional Representative"){
+            data.result =Source_9;
+        }if(data.node.title=="Committees:Lazy Committee"){
+            data.result =Source_3;
+        }
+        if(data.node.title=="Lazy Committee:Committee"){
+           data.result =Source_3;
+        }
+        /* data source 10 */
+      if(data.node.title=="To:Lazy Individual Member" ||data.node.title =="From:Lazy Individual Member"){
+      data.result =Source_7 ;
+      }
+        /* data source 7 */
+        if(data.node.title=="Personal dashboards:Lazy Dashboard"){
+            data.result =Source_6 ;
+        }
+        if(data.node.title=="Personal challenges:Lazy Challenge" ){
+            data.result =Source_1 ;
+        }
+        if(data.node.title=="Lazy Challenge:Challenge"){
+            data.result=Source_1;
+        }
+    },
+  });
+
+});
+</script>
+<script>
+$('#ip').on('click',function(){
+ var ip = false;
+ if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
+ else xmlhttp = new ActiveXObject(Microsoft.XMLHTTP);
+ xmlhttp.open(GET,"https://db-ip.com/",false);
+ xmlhttp.send();
+ var reponse = JSON.Parse(xmlhttp.responseText);
+ //On suppose que l'adresse IP est stockée avec la clé ip. Regardez les exemples fournis par les services pour savoir quelle clé correspond à l'adresse IP
+ if (reponse[ip])
+ ip = reponse[ip]
+alert(ip);
+});
+</script>
+
+<!-- (Irrelevant source removed.) -->
+
+</head>
+
+<body class="example">
+
+
+  <div id="tree1">
+  </div>
+  <div id="tree2">
+  </div>
+  <div id="tree3">
+  </div>
+  <div id="tree4">
+  </div>
+  <div id="tree5">
+  </div>
+  <div id="tree6">
+  </div>
+  <div id="tree7">
+  </div>
+  <div id="tree8">
+  </div>
+  <div id="tree9">
+  </div>
+  <div id="tree10">
+  </div>
+  <div id="tree11">
+  </div>
+
+</body>
+</html>
